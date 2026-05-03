@@ -95,3 +95,19 @@ SELECT *
 FROM Company_year_rank
 WHERE ranking <= 5
 ;
+
+
+-- Monthly Layoff Trend --
+SELECT DATE_FORMAT(date, '%Y-%m') AS month,
+       SUM(total_laid_off) AS total_laid_off
+FROM layoffs
+GROUP BY month
+ORDER BY month;
+
+
+-- Funding vs Layoffs --
+SELECT company,
+       funds_raised_millions,
+       total_laid_off
+FROM layoffs
+ORDER BY funds_raised_millions DESC;
